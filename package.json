@@ -1,0 +1,16 @@
+{
+  "name": "beginner-notes-app",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.5.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "marked": "^3.0.4"
+  }
+}
