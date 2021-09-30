@@ -1,4 +1,3 @@
-import axios from "axios";
 import marked from "marked";
 import "./styles/style.css";
 const new_note = document.getElementById("img");
@@ -10,9 +9,9 @@ new_note.addEventListener("click", () => {
   div.id = "box";
   div.innerHTML = `
   <div class="box_text" id="box_text"></div>
-  <!-- <div class="edit_text">
+   <div class="edit_text" id="edit_text">
     <textarea class="text" id="text" cols="30" rows="10"></textarea>
-  </div> -->
+  </div> 
   <div class="buttons">
     <p class="show_text" id="show_text"></p>
     <button class="save" id="save">
@@ -26,9 +25,27 @@ new_note.addEventListener("click", () => {
 
   const box_text = document.getElementById("box_text");
   const show_text = document.getElementById("show_text");
-  box_text.innerHTML = marked(
-    "# Marked in browser\n\nRendered by **marked** hiohdooaibioabibaos\n\niboiadbiobdasiobdisobiobda\n\nsiobiaosbiosadboibdsaaaa\n\naaaaaaaaaaaaaaaaaaab\n\nibaoibaibaiobosbaobaobaoiebibifbirb\n\nibiahishiahodhebowbo\n\nebeoboiewbibewoieb."
-  );
+
+  const texto = `# Notes App
+
+  Esta es una aplicacion que genera una nota usando MarkDown convirtiendolo a HTML
+
+  ## **Recursos utilizados**:
+
+  - HTML
+  - CSS
+  - JavaScript
+  - [Vite](https://vitejs.dev/ "ViteJS")
+  - [Git](https://git-scm.com/ "Git")
+  - [GitHub](https://github.com/SevroAuBarca "GitHub")
+  - [MarkedJS](https://marked.js.org/ "Market")
+  `;
+  box_text.innerHTML = texto
+    .split("\n")
+    .map((txt) => {
+      return marked(txt);
+    })
+    .join("");
 
   const date = new Date();
   const date_new = {
@@ -38,4 +55,17 @@ new_note.addEventListener("click", () => {
   };
 
   show_text.innerHTML = `Created at: ${date_new.day}, ${date_new.month}, ${date_new.year}`;
+  editar(box_text, texto);
 });
+
+const editar = (box_text_show, texto) => {
+  const area_text = document.getElementById("edit_text");
+  const textarea = document.getElementById("text");
+  console.log(texto);
+  box_text.addEventListener("click", () => {
+    console.log("entro");
+    box_text_show.style.display = "none";
+    area_text.style.display = "block";
+    textarea.value = texto;
+  });
+};
